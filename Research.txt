@@ -1,0 +1,3 @@
+"Modeling the Panchromatic Spectral Energy Distributions of Galaxies" (Conroy, 2013):
+https://ui.adsabs.harvard.edu/abs/2013ARA%26A..51..393C/abstract
+- Stellar population modelling
