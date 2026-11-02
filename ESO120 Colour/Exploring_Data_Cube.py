@@ -7,7 +7,7 @@ from astropy.visualization import make_lupton_rgb
 #hdul.info()
 
 # opens the fits file, pulls out the appropriate data, closes the file
-with fits.open('c:/Users/briaj/OneDrive/Desktop/UNSW/Year 3 (2026)/PHYS4200 (Research Project)/Star-Formation-History/ESO120-016_DATACUBE_iDR1.fits') as hdul:
+with fits.open('c:/Users/briaj/OneDrive/Desktop/UNSW/Year 3 (2026)/PHYS4200 (Research Project)/Star-Formation-History/Data/ESO120-016_DATACUBE_iDR1.fits') as hdul:
     data = hdul['DATA'].data   # actual data, shape (wavelength, y, x)
     dq= hdul['DQ'].data        # quality of data, if anything other than 0 its no good
     hdr = hdul['DATA'].header  # headers of the actual data
@@ -51,6 +51,8 @@ scale = np.percentile(total[:, 180:260], 99)   # finds nearly (99th percentile) 
 rgb = make_lupton_rgb(r_img/scale, g_img/scale, b_img/scale, stretch=0.5, Q=8) # builds the colour image
 #   --> dividing by the scale means the brightness values are mostly between 0 and 1 
 rgb[total < 3 * noise] = 0 # ensures any values below 3 times the background noise are 0
+# *plot a histagram to look at the noise
+# * play with line 53 --> look at background noise, can you emphasise certain features?
 
 # making the figure
 plt.figure(figsize=(8, 8))

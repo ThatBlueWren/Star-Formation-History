@@ -1,0 +1,66 @@
+## Changes to the ngist_supplementary_public to fix for windows
+ngistPipeline --config configFiles/MasterConfig.yaml --default-dir configFiles/defaultDir
+
+# Code to run before ngist (solves thread oversubscribtion by keeping it at one thread per process, effectively speeding up the computing time):
+$env:OMP_NUM_THREADS = "1"
+$env:MKL_NUM_THREADS = "1"
+$env:OPENBLAS_NUM_THREADS = "1"
+
+# Changes made:
+In ngistPipeline > stellarKinematics > ppxf_kin_wrapper.py @ line 1004
+    Original:  os.remove(templates_filename_memmap)
+                os.remove(bin_data_filename_memmap)
+                os.remove(noise_filename_memmap)
+    
+    New:        for fname in (templates_filename_memmap,
+                      bin_data_filename_memmap,
+                      noise_filename_memmap):
+                    try:
+                        os.remove(fname)
+                    except PermissionError:
+                        pass
+
+In ngistPipeline > continuumCube > ppxf_cont_wrapper.py @ line 762
+    Original:   os.remove(templates_filename_memmap)
+                os.remove(spectra_filename_memmap)
+                os.remove(error_filename_memmap)
+
+    New:        for fname in (templates_filename_memmap,
+                      spectra_filename_memmap,
+                      error_filename_memmap):
+                    try:
+                        os.remove(fname)
+                    except PermissionError:
+                        pass
+
+In ngistPipeline > emisisonLines > ppxf_gas_wrapper.py @ line 988
+    Original:   os.remove(templates_filename_memmap)
+                os.remove(bin_data_filename_memmap)
+                os.remove(noise_filename_memmap)
+
+    New:        for fname in (templates_filename_memmap,
+                      bin_data_filename_memmap,
+                      noise_filename_memmap):
+                    try:
+                        os.remove(fname)
+                    except PermissionError:
+                        pass
+
+In ngistPipeline > starFormationHistories > ppxf_sfh_wrapper.py @ line 1123
+    Original:   os.remove(templates_filename_memmap)
+                os.remove(bin_data_filename_memmap)
+                os.remove(noise_filename_memmap)
+
+    New:        for fname in (templates_filename_memmap,
+                      bin_data_filename_memmap,
+                      noise_filename_memmap):
+                    try:
+                        os.remove(fname)
+                    except PermissionError:
+                        pass
+
+In ngistPipeline > prepareTemplates > miles.py @ line 24
+    Original:   files.append(passedFiles[i].split("/")[-1])
+
+    New:        files.append(os.path.basename(passedFiles[i]))
+
