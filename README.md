@@ -22,7 +22,18 @@ Week 5 Goals
 Week 7 Goals
 - Run low metallicity alphamc at higher ages (Y)
 - Try secondary alphamc file for better matching with miles (Y)
-- Try plotting sMILES and xshooter (okay if variables don't match, just note them)
-    - compare alphamc to xshooter due to their shared higher res
-    - Gausian smoothing? to fix different resolutions 
-- Run new galaxy on nGIST? mess with Mapviewer (type in terminal, select folder)
+- Try plotting sMILES and xshooter (okay if variables don't match, just note them) (Y)
+    - compare alphamc to xshooter due to their shared higher res (N)
+    - Gausian smoothing? to fix different resolutions (N)
+- Run new galaxy on nGIST? mess with Mapviewer (type in terminal, select folder) (N)
+
+Week 8 Goals (send Jesse nGIST changes)
+- xShooter
+- Geckos ESO120 through nGIST
+    - Min S/N = 5 (minimum signal to noise thst will be binned)
+    - Target S/N = choose large enough S/N so that we only have one bin of the entire galaxy (to look at overall sfh)
+        - turn off all modules when working out S/N number (from kin onwards)
+        - use override=True
+- Try IS1711? Run all the above again
+    - For mapviewer, bottom left and bottom middle graphs (MassAge, Z/HAge)
+- Contact Jesse if finish the list

@@ -1,0 +1,374 @@
+10/14/26 09:03:44 - INFO     - _initialise: 
+
+# ============================================== #
+#               THE nGIST PIPELINE               #
+#                 Version 7.6.8                  #
+# ============================================== #
+
+10/14/26 09:03:44 - INFO     - _readData: Using the read-in routine for MUSE_WFM
+10/14/26 09:03:44 - INFO     - MUSE_WFM: Reading the MUSE-WFM cube: .\inputData\NGC0000.fits
+10/14/26 09:03:44 - INFO     - MUSE_WFM: Reading the error (variance) spectra from the cube
+10/14/26 09:03:45 - INFO     - MUSE_WFM: Extracting spatial information:
+                                         * Spatial coordinates are centred to [14.0, 14.0]
+                                         * Spatial pixelsize is 0.20000000000000015
+10/14/26 09:03:45 - INFO     - MUSE_WFM: Shifting spectra to rest-frame, assuming a redshift of 0.008764
+10/14/26 09:03:45 - INFO     - MUSE_WFM: Shortening spectra to the wavelength range from 4750A to 7100A.
+10/14/26 09:03:45 - INFO     - MUSE_WFM: Computing the signal-to-noise ratio in the wavelength range from 4750A to 7100A.
+10/14/26 09:03:45 - INFO     - MUSE_WFM: Finished reading the MUSE cube! Read a total of 900 spectra!
+10/14/26 09:03:45 - INFO     - _spatialMasking: Using the spatial masking routine for default
+10/14/26 09:03:46 - INFO     - default: Masking defunct spaxels: 0 spaxels are rejected.
+10/14/26 09:03:46 - INFO     - default: Masking low signal-to-noise spaxels: 0 spaxels are rejected.
+10/14/26 09:03:46 - INFO     - default: Masking spaxels according to maskfile: 52 spaxels are rejected.
+10/14/26 09:03:46 - INFO     - default: Combined mask: 52 spaxels are rejected.
+10/14/26 09:03:46 - INFO     - default: Wrote mask file: .\results\.\NGC0000\NGC0000_mask.fits
+10/14/26 09:03:46 - INFO     - _spatialBinning: Using the spatial binning routine for voronoi
+10/14/26 09:03:47 - INFO     - voronoi: Defining the Voronoi bins
+10/14/26 09:03:48 - INFO     - voronoi: 61 Voronoi bins generated!
+10/14/26 09:03:48 - INFO     - voronoi: Wrote Voronoi table: .\results\.\NGC0000\NGC0000_table.fits
+10/14/26 09:03:48 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 30, in generateFITS
+    save_maps_fits.savefitsmaps("SPATIAL_BINNING", config["SPATIAL_BINNING"]["METHOD"],
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 56, in savefitsmaps
+    table_hdu = fits.open(os.path.join(outdir, rootname) + "_table.fits")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+10/14/26 09:03:48 - ERROR    - _writeFITS: Failed to produce table binned maps.
+10/14/26 09:03:48 - INFO     - _prepareSpectra: Using the routine for default
+10/14/26 09:03:48 - INFO     - default: Applied spatial bins to lin-data
+10/14/26 09:03:48 - INFO     - default: Wrote: .\results\.\NGC0000\NGC0000_bin_spectra_linear.hdf5
+10/14/26 09:03:49 - INFO     - default: Log-rebinned the spectra
+10/14/26 09:03:50 - INFO     - default: Log-rebinned the error spectra
+10/14/26 09:03:50 - INFO     - default: Applied spatial bins to log-data
+10/14/26 09:03:50 - INFO     - default: Wrote: .\results\.\NGC0000\NGC0000_bin_spectra.hdf5
+10/14/26 09:03:50 - INFO     - _stellarKinematics: Using the stellarKinematics routine 'ppxf_kin_wrapper.py'
+10/14/26 09:03:51 - INFO     - ppxf_kin_wrapper: Using full spectral library for PPXF
+10/14/26 09:03:51 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 09:03:55 - INFO     - miles: Prepared the stellar population templates
+10/14/26 09:03:55 - INFO     - ppxf_kin_wrapper: Using V and SIGMA from the MasterConfig file as initial guesses
+10/14/26 09:03:55 - INFO     - ppxf_kin_wrapper: Running PPXF in parallel mode
+10/14/26 09:11:01 - INFO     - ppxf_kin_wrapper: Running PPXF on 61 spectra took 426.34s using 4 cores
+10/14/26 09:11:01 - INFO     - ppxf_kin_wrapper: There were no problems in the analysis.
+10/14/26 09:11:02 - INFO     - ppxf_kin_wrapper: Wrote: .\results\.\NGC0000\NGC0000_kin.fits
+10/14/26 09:11:02 - INFO     - ppxf_kin_wrapper: Wrote: .\results\.\NGC0000\NGC0000_kin_bestfit.fits
+10/14/26 09:11:02 - INFO     - ppxf_kin_wrapper: Wrote: .\results\.\NGC0000\NGC0000_kin_optimal_templates.fits
+10/14/26 09:11:02 - INFO     - ppxf_kin_wrapper: Wrote: .\results\.\NGC0000\NGC0000_kin_spectral_mask.fits
+10/14/26 09:11:02 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 44, in generateFITS
+    save_maps_fits.savefitsmaps("KIN", config["KIN"]["METHOD"],
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 56, in savefitsmaps
+    table_hdu = fits.open(os.path.join(outdir, rootname) + "_table.fits")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+10/14/26 09:11:02 - ERROR    - _writeFITS: Failed to produce stellar kinematics maps.
+10/14/26 09:11:02 - INFO     - _continuumCube: Using the continuumCube routine 'ppxf_cont_wrapper.py'
+10/14/26 09:11:02 - INFO     - ppxf_cont_wrapper: Using full spectral library for PPXF
+10/14/26 09:11:02 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 09:11:07 - INFO     - miles: Prepared the stellar population templates
+10/14/26 09:11:07 - INFO     - ppxf_cont_wrapper: Using V and SIGMA from the MasterConfig file as initial guesses
+10/14/26 09:11:07 - INFO     - ppxf_cont_wrapper: Running PPXF in parallel mode
+10/14/26 09:40:43 - CRITICAL - _continuumCube: [WinError 32] The process cannot access the file because it is being used by another process: '.\\results\\.\\NGC0000/templates_memmap.tmp'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\continuumCube\_continuumCube.py", line 64, in continuumCube_Module
+    module.createContinuumCube(config)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\continuumCube/ppxf_cont_wrapper.py", line 762, in createContinuumCube
+    os.remove(templates_filename_memmap)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: '.\\results\\.\\NGC0000/templates_memmap.tmp'
+10/14/26 09:40:43 - CRITICAL - _continuumCube: continuumCube routine 'ppxf_cont_wrapper.py' failed.
+10/14/26 09:40:43 - CRITICAL - MainPipeline: Galaxy is skipped!
+10/14/26 09:47:13 - INFO     - _initialise: 
+
+# ============================================== #
+#               THE nGIST PIPELINE               #
+#                 Version 7.6.8                  #
+# ============================================== #
+
+10/14/26 09:47:13 - INFO     - _readData: Using the read-in routine for MUSE_WFM
+10/14/26 09:47:13 - INFO     - MUSE_WFM: Reading the MUSE-WFM cube: .\inputData\NGC0000.fits
+10/14/26 09:47:13 - INFO     - MUSE_WFM: Reading the error (variance) spectra from the cube
+10/14/26 09:47:13 - INFO     - MUSE_WFM: Extracting spatial information:
+                                         * Spatial coordinates are centred to [14.0, 14.0]
+                                         * Spatial pixelsize is 0.20000000000000015
+10/14/26 09:47:13 - INFO     - MUSE_WFM: Shifting spectra to rest-frame, assuming a redshift of 0.008764
+10/14/26 09:47:13 - INFO     - MUSE_WFM: Shortening spectra to the wavelength range from 4750A to 7100A.
+10/14/26 09:47:14 - INFO     - MUSE_WFM: Computing the signal-to-noise ratio in the wavelength range from 4750A to 7100A.
+10/14/26 09:47:14 - INFO     - MUSE_WFM: Finished reading the MUSE cube! Read a total of 900 spectra!
+10/14/26 09:47:14 - INFO     - _spatialMasking: Results of the spatialMasking module are already in the output directory. Module is skipped.
+10/14/26 09:47:14 - INFO     - _spatialBinning: Results of the module are already in the output directory. Module is skipped.
+10/14/26 09:47:14 - INFO     - _prepareSpectra: Results of the module are already in the output directory. Module is skipped.
+10/14/26 09:47:14 - INFO     - _stellarKinematics: Results of the module are already in the output directory. Module is skipped.
+10/14/26 09:47:14 - INFO     - _continuumCube: Using the continuumCube routine 'ppxf_cont_wrapper.py'
+10/14/26 09:47:17 - INFO     - ppxf_cont_wrapper: Using full spectral library for PPXF
+10/14/26 09:47:17 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 09:47:23 - INFO     - miles: Prepared the stellar population templates
+10/14/26 09:47:23 - INFO     - ppxf_cont_wrapper: Using V and SIGMA from the MasterConfig file as initial guesses
+10/14/26 09:47:23 - INFO     - ppxf_cont_wrapper: Running PPXF in parallel mode
+10/14/26 10:02:48 - INFO     - ppxf_cont_wrapper: Running PPXF on 61 spectra took 924.91s using 4 cores
+10/14/26 10:02:48 - INFO     - ppxf_cont_wrapper: There were no problems in the analysis.
+10/14/26 10:02:48 - INFO     - ppxf_cont_wrapper: Wrote: .\results\.\NGC0000\NGC0000_kin_bestfit_cont.hdf5
+10/14/26 10:02:48 - INFO     - MUSE_WFM: Reading the MUSE-WFM cube: .\inputData\NGC0000.fits
+10/14/26 10:02:49 - INFO     - MUSE_WFM: Reading the error (variance) spectra from the cube
+10/14/26 10:02:49 - INFO     - MUSE_WFM: Extracting spatial information:
+                                         * Spatial coordinates are centred to [14.0, 14.0]
+                                         * Spatial pixelsize is 0.20000000000000015
+10/14/26 10:02:49 - INFO     - MUSE_WFM: Shifting spectra to rest-frame, assuming a redshift of 0.008764
+10/14/26 10:02:49 - INFO     - MUSE_WFM: Shortening spectra to the wavelength range from 4750A to 7100A.
+10/14/26 10:02:50 - INFO     - MUSE_WFM: Computing the signal-to-noise ratio in the wavelength range from 4750A to 7100A.
+10/14/26 10:02:50 - INFO     - MUSE_WFM: Finished reading the MUSE cube! Read a total of 900 spectra!
+10/14/26 10:02:52 - INFO     - _writeFITS: Produced continuum-only and line-only cubes in FITS format
+10/14/26 10:02:52 - INFO     - _emissionLines: Using the emissionLines routine 'ppxf_gas_wrapper.py'
+10/14/26 10:02:55 - INFO     - ppxf_gas_wrapper:  - - - Running Emission Lines Fitting - - - 
+10/14/26 10:02:55 - INFO     - ppxf_gas_wrapper: Using full spectral library for ppxf on BIN level
+10/14/26 10:02:55 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 10:03:00 - INFO     - miles: Prepared the stellar population templates
+10/14/26 10:03:00 - INFO     - ppxf_gas_wrapper: Stellar kinematics are FIXED to the results obtained before.
+10/14/26 10:03:00 - INFO     - ppxf_gas_wrapper: Running PPXF for emission lines analysis in parallel mode
+10/14/26 10:42:20 - CRITICAL - _emissionLines: name 'bin_data_filename_memmap' is not defined
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\emissionLines\_emissionLines.py", line 108, in emissionLines_Module
+    module.performEmissionLineAnalysis(config)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\emissionLines/ppxf_gas_wrapper.py", line 989, in performEmissionLineAnalysis
+    bin_data_filename_memmap,
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'bin_data_filename_memmap' is not defined
+10/14/26 10:42:20 - CRITICAL - _emissionLines: emissionLine routine 'ppxf_gas_wrapper.py' failed.
+10/14/26 10:42:20 - CRITICAL - MainPipeline: Galaxy is skipped!
+10/14/26 10:49:53 - INFO     - _initialise: 
+
+# ============================================== #
+#               THE nGIST PIPELINE               #
+#                 Version 7.6.8                  #
+# ============================================== #
+
+10/14/26 10:49:53 - INFO     - _readData: Using the read-in routine for MUSE_WFM
+10/14/26 10:49:53 - INFO     - MUSE_WFM: Reading the MUSE-WFM cube: .\inputData\NGC0000.fits
+10/14/26 10:49:53 - INFO     - MUSE_WFM: Reading the error (variance) spectra from the cube
+10/14/26 10:49:53 - INFO     - MUSE_WFM: Extracting spatial information:
+                                         * Spatial coordinates are centred to [14.0, 14.0]
+                                         * Spatial pixelsize is 0.20000000000000015
+10/14/26 10:49:53 - INFO     - MUSE_WFM: Shifting spectra to rest-frame, assuming a redshift of 0.008764
+10/14/26 10:49:53 - INFO     - MUSE_WFM: Shortening spectra to the wavelength range from 4750A to 7100A.
+10/14/26 10:49:54 - INFO     - MUSE_WFM: Computing the signal-to-noise ratio in the wavelength range from 4750A to 7100A.
+10/14/26 10:49:54 - INFO     - MUSE_WFM: Finished reading the MUSE cube! Read a total of 900 spectra!
+10/14/26 10:49:54 - INFO     - _spatialMasking: Results of the spatialMasking module are already in the output directory. Module is skipped.
+10/14/26 10:49:54 - INFO     - _spatialBinning: Results of the module are already in the output directory. Module is skipped.
+10/14/26 10:49:54 - INFO     - _prepareSpectra: Results of the module are already in the output directory. Module is skipped.
+10/14/26 10:49:54 - INFO     - _stellarKinematics: Results of the module are already in the output directory. Module is skipped.
+10/14/26 10:49:54 - INFO     - _continuumCube: Results of the module are already in the output directory. Module is skipped.
+10/14/26 10:49:54 - INFO     - _emissionLines: Using the emissionLines routine 'ppxf_gas_wrapper.py'
+10/14/26 10:49:57 - INFO     - ppxf_gas_wrapper:  - - - Running Emission Lines Fitting - - - 
+10/14/26 10:49:57 - INFO     - ppxf_gas_wrapper: Using full spectral library for ppxf on BIN level
+10/14/26 10:49:57 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 10:50:01 - INFO     - miles: Prepared the stellar population templates
+10/14/26 10:50:02 - INFO     - ppxf_gas_wrapper: Stellar kinematics are FIXED to the results obtained before.
+10/14/26 10:50:02 - INFO     - ppxf_gas_wrapper: Running PPXF for emission lines analysis in parallel mode
+10/14/26 11:02:28 - INFO     - ppxf_gas_wrapper: Running PPXF on 61 spectra took 746.89s using 4 cores
+10/14/26 11:02:29 - INFO     - ppxf_gas_wrapper: Wrote: .\results\.\NGC0000/NGC0000_gas_bin.fits
+10/14/26 11:02:29 - INFO     - ppxf_gas_wrapper: Wrote: .\results\.\NGC0000/NGC0000_gas_bestfit_bin.fits
+10/14/26 11:02:29 - INFO     - ppxf_gas_wrapper: Emission Line Fitting done
+
+10/14/26 11:02:29 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_mask.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 80, in generateFITS
+    save_maps_fits.savefitsmaps_GASmodule(
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 199, in savefitsmaps_GASmodule
+    mask = fits.open(os.path.join(outdir, rootname) + "_mask.fits")[1].data.MASK_DEFUNCT
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_mask.fits'
+10/14/26 11:02:29 - ERROR    - _writeFITS: Failed to produce maps from the emission-line analysis.
+10/14/26 11:02:29 - INFO     - _starFormationHistories: Using the starFormationHistories routine 'ppxf_sfh_wrapper.py'
+10/14/26 11:02:29 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 11:02:30 - CRITICAL - _prepareTemplates: could not convert string to float: 'emplate'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\prepareTemplates\_prepareTemplates.py", line 53, in prepareTemplates_Module
+    ) = prepTemplatesModule.prepareSpectralTemplateLibrary(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\prepareTemplates/miles.py", line 229, in prepareSpectralTemplateLibrary
+    ) = age_metal_alpha(sp_models)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\prepareTemplates/miles.py", line 29, in age_metal_alpha
+    age = float(s[t + 1 : t + 8])
+          ^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'emplate'
+10/14/26 11:02:30 - CRITICAL - _prepareTemplates: Routine 'miles.py' failed.
+10/14/26 11:02:30 - CRITICAL - _starFormationHistories: not enough values to unpack (expected 11, got 4)
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\starFormationHistories\_starFormationHistories.py", line 66, in starFormationHistories_Module
+    module.extractStarFormationHistories(config)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\starFormationHistories/ppxf_sfh_wrapper.py", line 827, in extractStarFormationHistories
+    (
+ValueError: not enough values to unpack (expected 11, got 4)
+10/14/26 11:02:30 - CRITICAL - _starFormationHistories: starFormationHistories routine 'ppxf_sfh_wrapper.py' failed.
+10/14/26 11:02:30 - CRITICAL - MainPipeline: Galaxy is skipped!
+10/14/26 11:13:14 - INFO     - _initialise: 
+
+# ============================================== #
+#               THE nGIST PIPELINE               #
+#                 Version 7.6.8                  #
+# ============================================== #
+
+10/14/26 11:13:14 - INFO     - _readData: Using the read-in routine for MUSE_WFM
+10/14/26 11:13:14 - INFO     - MUSE_WFM: Reading the MUSE-WFM cube: .\inputData\NGC0000.fits
+10/14/26 11:13:15 - INFO     - MUSE_WFM: Reading the error (variance) spectra from the cube
+10/14/26 11:13:15 - INFO     - MUSE_WFM: Extracting spatial information:
+                                         * Spatial coordinates are centred to [14.0, 14.0]
+                                         * Spatial pixelsize is 0.20000000000000015
+10/14/26 11:13:15 - INFO     - MUSE_WFM: Shifting spectra to rest-frame, assuming a redshift of 0.008764
+10/14/26 11:13:15 - INFO     - MUSE_WFM: Shortening spectra to the wavelength range from 4750A to 7100A.
+10/14/26 11:13:16 - INFO     - MUSE_WFM: Computing the signal-to-noise ratio in the wavelength range from 4750A to 7100A.
+10/14/26 11:13:16 - INFO     - MUSE_WFM: Finished reading the MUSE cube! Read a total of 900 spectra!
+10/14/26 11:13:16 - INFO     - _spatialMasking: Results of the spatialMasking module are already in the output directory. Module is skipped.
+10/14/26 11:13:16 - INFO     - _spatialBinning: Results of the module are already in the output directory. Module is skipped.
+10/14/26 11:13:16 - INFO     - _prepareSpectra: Results of the module are already in the output directory. Module is skipped.
+10/14/26 11:13:16 - INFO     - _stellarKinematics: Results of the module are already in the output directory. Module is skipped.
+10/14/26 11:13:16 - INFO     - _continuumCube: Results of the module are already in the output directory. Module is skipped.
+10/14/26 11:13:16 - INFO     - _emissionLines: Using the emissionLines routine 'ppxf_gas_wrapper.py'
+10/14/26 11:13:19 - INFO     - ppxf_gas_wrapper:  - - - Running Emission Lines Fitting - - - 
+10/14/26 11:13:19 - INFO     - ppxf_gas_wrapper: Using full spectral library for ppxf on BIN level
+10/14/26 11:13:19 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 11:13:23 - INFO     - miles: Prepared the stellar population templates
+10/14/26 11:13:23 - INFO     - ppxf_gas_wrapper: Stellar kinematics are FIXED to the results obtained before.
+10/14/26 11:13:23 - INFO     - ppxf_gas_wrapper: Running PPXF for emission lines analysis in parallel mode
+10/14/26 11:26:21 - INFO     - ppxf_gas_wrapper: Running PPXF on 61 spectra took 777.35s using 4 cores
+10/14/26 11:26:21 - INFO     - ppxf_gas_wrapper: Wrote: .\results\.\NGC0000/NGC0000_gas_bin.fits
+10/14/26 11:26:21 - INFO     - ppxf_gas_wrapper: Wrote: .\results\.\NGC0000/NGC0000_gas_bestfit_bin.fits
+10/14/26 11:26:21 - INFO     - ppxf_gas_wrapper: Emission Line Fitting done
+
+10/14/26 11:26:21 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_mask.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 80, in generateFITS
+    save_maps_fits.savefitsmaps_GASmodule(
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 199, in savefitsmaps_GASmodule
+    mask = fits.open(os.path.join(outdir, rootname) + "_mask.fits")[1].data.MASK_DEFUNCT
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_mask.fits'
+10/14/26 11:26:21 - ERROR    - _writeFITS: Failed to produce maps from the emission-line analysis.
+10/14/26 11:26:21 - INFO     - _starFormationHistories: Using the starFormationHistories routine 'ppxf_sfh_wrapper.py'
+10/14/26 11:26:22 - INFO     - _prepareTemplates: Using the routine for 'miles.py'
+10/14/26 11:26:26 - INFO     - miles: Prepared the stellar population templates
+10/14/26 11:26:26 - INFO     - ppxf_sfh_wrapper: Using regular spectra without any emission-correction at .\results\.\NGC0000\NGC0000_bin_spectra.hdf5
+10/14/26 11:26:26 - INFO     - ppxf_sfh_wrapper: Stellar kinematics are FIXED to the results obtained before.
+10/14/26 11:26:26 - INFO     - ppxf_sfh_wrapper: Running pPXF in parallel mode
+10/14/26 11:41:32 - INFO     - ppxf_sfh_wrapper: Running PPXF on 61 spectra took 906.23s using 4 cores
+10/14/26 11:41:32 - INFO     - ppxf_sfh_wrapper: There were no problems in the analysis.
+10/14/26 11:41:32 - INFO     - ppxf_sfh_wrapper: Wrote: .\results\.\NGC0000\NGC0000_sfh.fits
+10/14/26 11:41:33 - INFO     - ppxf_sfh_wrapper: Wrote: .\results\.\NGC0000\NGC0000_sfh_weights.fits
+10/14/26 11:41:33 - INFO     - ppxf_sfh_wrapper: Wrote: .\results\.\NGC0000\NGC0000_sfh_bestfit.fits
+10/14/26 11:41:33 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 128, in generateFITS
+    save_maps_fits.savefitsmaps("SFH", config["SFH"]["METHOD"], config["GENERAL"]["OUTPUT"])
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 56, in savefitsmaps
+    table_hdu = fits.open(os.path.join(outdir, rootname) + "_table.fits")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+10/14/26 11:41:33 - ERROR    - _writeFITS: Failed to produce SFH maps.
+10/14/26 11:41:33 - INFO     - _lineStrengths: Using the lineStrengths routine 'default.py'
+10/14/26 11:41:37 - INFO     - default: Using emission-subtracted spectra at .\results\.\NGC0000\NGC0000_gas_cleaned_bin.fits
+10/14/26 11:41:44 - INFO     - default: Wrote: .\results\.\NGC0000\NGC0000_ls_cleaned_linear.fits
+10/14/26 11:41:44 - INFO     - default: Running lineStrengths in parallel mode
+10/14/26 11:42:18 - INFO     - default: Running lineStrengths on 61 spectra took 34.39s using 4 cores
+10/14/26 11:42:18 - INFO     - default: There were no problems in the analysis.
+10/14/26 11:42:19 - INFO     - default: Wrote: .\results\.\NGC0000\NGC0000_ls_orig_res.fits
+10/14/26 11:42:19 - INFO     - default: Reading .\results\.\NGC0000\NGC0000_ls_cleaned_linear.fits
+10/14/26 11:42:20 - INFO     - default: Loading LS model file at .\spectralTemplates\MILES_CH_LIS8.4.fits
+10/14/26 11:42:20 - INFO     - default: Running lineStrengths in parallel mode
+10/14/26 11:49:54 - INFO     - default: Running lineStrengths on 61 spectra took 454.41s using 4 cores
+10/14/26 11:49:54 - INFO     - default: There were no problems in the analysis.
+10/14/26 11:49:55 - INFO     - default: Wrote: .\results\.\NGC0000\NGC0000_ls_adap_res.fits
+10/14/26 11:49:55 - ERROR    - _writeFITS: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+Traceback (most recent call last):
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\_writeFITS.py", line 140, in generateFITS
+    save_maps_fits.savefitsmaps_LSmodule(
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\ngistPipeline\writeFITS\save_maps_fits.py", line 315, in savefitsmaps_LSmodule
+    table_hdu = fits.open(os.path.join(outdir, rootname) + "_table.fits")
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 220, in fitsopen
+    return HDUList.fromfile(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 484, in fromfile
+    return cls._readfrom(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\hdu\hdulist.py", line 1186, in _readfrom
+    fileobj = _File(
+              ^^^^^^
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 240, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "C:\Users\briaj\Downloads\Anaconda\envs\ngistenv\Lib\site-packages\astropy\io\fits\file.py", line 700, in _open_filename
+    self._file = open(self.name, IO_FITS_MODES[mode])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '.\\results\\.\\NGC0000\\.\\results\\.\\NGC0000_table.fits'
+10/14/26 11:49:55 - ERROR    - _writeFITS: Failed to produce line strength maps.
+10/14/26 11:49:55 - WARNING  - _userModules: The module was turned off.
+10/14/26 11:49:55 - INFO     - MainPipeline: nGIST completed successfully.

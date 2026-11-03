@@ -1,0 +1,127 @@
+GENERAL:
+  RUN_ID: NGC0000
+  INPUT: .\inputData\NGC0000.fits
+  OUTPUT: .\results\.\NGC0000
+  REDSHIFT: 0.008764
+  PARALLEL: true
+  NCPU: 4
+  LSF_DATA: lsf_MUSE-WFM-MILES
+  OW_CONFIG: false
+  OW_OUTPUT: false
+  CREATE_HTML: false
+  CONFIG_DIR: .\configFiles
+  TEMPLATE_DIR: .\spectralTemplates
+READ_DATA:
+  METHOD: MUSE_WFM
+  DEBUG: false
+  ORIGIN: 14,14
+  LMIN_TOT: 4750
+  LMAX_TOT: 7100
+  LMIN_SNR: 4750
+  LMAX_SNR: 7100
+  EBmV: 0.0367
+SPATIAL_MASKING:
+  METHOD: default
+  MIN_SNR: 20.0
+  MASK: NGC0000_mask.fits
+  THRESHOLD_METHOD: isophote
+SPATIAL_BINNING:
+  METHOD: voronoi
+  TARGET_SNR: 200.0
+  COVARIANCE: 0.0
+PREPARE_SPECTRA:
+  METHOD: default
+  VELSCALE: 41
+KIN:
+  METHOD: ppxf
+  SPEC_MASK: specMask_KIN
+  LMIN: 4750
+  LMAX: 7100
+  SIGMA: 100
+  BIAS: Auto
+  MOM: 4
+  ADEG: 12
+  MDEG: 0
+  MC_PPXF: 0
+  LSF_TEMP: lsf_MILES
+  TEMPLATE_SET: miles
+  LIBRARY: MILES/
+  NORM_TEMP: LIGHT
+  DOCLEAN: true
+  OPT_TEMP: default
+  DUST_CORR: true
+  NOISE: variance
+  PLOT: false
+  DEBUG_BIN: false
+CONT:
+  METHOD: ppxf
+  SPEC_MASK: specMask_KIN
+  LMIN: 4750
+  LMAX: 7100
+  SIGMA: 100
+  MOM: 4
+  ADEG: 0
+  MDEG: 8
+  MC_PPXF: 0
+  LSF_TEMP: lsf_MILES
+  TEMPLATE_SET: miles
+  LIBRARY: MILES/
+  NORM_TEMP: LIGHT
+  DOCLEAN: true
+  OPT_TEMP: default
+  DUST_CORR: true
+  NOISE: variance
+  PLOT: false
+  DEBUG_BIN: false
+GAS:
+  METHOD: ppxf
+  SPEC_MASK: specMask_GAS
+  LEVEL: BIN
+  LMIN: 4750
+  LMAX: 7100
+  ERRORS: 0
+  DUST_CORR: false
+  MDEG: 8
+  FIXED: true
+  MOM: 2
+  EMI_FILE: emissionLines_ppxf.config
+  LSF_TEMP: lsf_MILES
+  TEMPLATE_SET: miles
+  LIBRARY: MILES/
+  NORM_TEMP: LIGHT
+SFH:
+  METHOD: ppxf
+  LMIN: 4750
+  LMAX: 7100
+  SPEC_MASK: specMask_SFH_EmlineMask
+  SPEC_EMICLEAN: false
+  MOM: 4
+  MDEG: 12
+  REGUL: 1.0
+  FIXED: true
+  MC_PPXF: 0
+  LSF_TEMP: lsf_MILES
+  TEMPLATE_SET: miles
+  LIBRARY: MILES/
+  NORM_TEMP: LIGHT
+  DOCLEAN: true
+  OPT_TEMP: default
+  DUST_CORR: true
+  NOISE: variance
+  PLOT: false
+  DEBUG_BIN: false
+LS:
+  METHOD: default
+  TYPE: SPP
+  LS_FILE: lsBands.config
+  CONV_COR: 8.4
+  SPP_FILE: MILES_CH_LIS8.4.fits
+  MC_LS: 100
+  NWALKER: 200
+  NCHAIN: 200
+  LSF_TEMP: lsf_MILES
+  TEMPLATE_SET: miles
+  LIBRARY: MILES/
+  NORM_TEMP: LIGHT
+UMOD:
+  METHOD: false
