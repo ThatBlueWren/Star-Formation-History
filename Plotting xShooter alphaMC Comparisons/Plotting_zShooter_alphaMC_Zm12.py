@@ -63,15 +63,16 @@ with fits.open('Data/alphaMC_Data.fits') as hdul:
 mask = (wave_XSL_logT77 > 3500) & (wave_XSL_logT77 < 7400)
 
 ## SCALE FOR XSL IS WAY OFF --> don't know the conversion to match alphaMC
+C_flux =  (4* np.pi * (3.08567758128e19)**2) / (3.828e33) / (0.562)    
 
-ax.plot(wave_XSL_logT77[mask], flux_XSL_logT77[mask], label=f"XSL: T={real_age_logT77:.2f}")
-ax.plot(wave_XSL_logT84[mask], flux_XSL_logT84[mask], label=f"XSL: T={real_age_logT84:.2f}")
-ax.plot(wave_XSL_logT90[mask], flux_XSL_logT90[mask], label=f"XSL: T={real_age_logT90:.2f}")
+ax.plot(wave_XSL_logT77[mask], flux_XSL_logT77[mask] * C_flux, label=f"XSL: T={real_age_logT77:.2f}")
+ax.plot(wave_XSL_logT84[mask], flux_XSL_logT84[mask] * C_flux, label=f"XSL: T={real_age_logT84:.2f}")
+ax.plot(wave_XSL_logT90[mask], flux_XSL_logT90[mask] * C_flux, label=f"XSL: T={real_age_logT90:.2f}")
 
 
 ax.set_xlabel('Wavelength [Å]')
 ax.set_ylabel('Flux [L$_\\odot$/Å/M$_\\odot$]') ## for alphaMC
-ax.set_title("SSP's at Metallicity Z=-1.2 (Z=-1.25 for alphaMC)")
+ax.set_title("Comparing xShooter and alphaMC SSP's at Metallicity Z=-1.2 (Z=-1.25 for alphaMC)")
 ax.legend()
 plt.show()
 
