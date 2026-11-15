@@ -12,4 +12,4 @@
 inputDir=.\inputData
 outputDir=.\results
 configDir=.\configFiles
-templateDir=.\spectralTemplates
+templateDir=.\spectral_templates

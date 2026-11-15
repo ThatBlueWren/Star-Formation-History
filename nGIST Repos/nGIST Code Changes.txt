@@ -1,5 +1,6 @@
-## Changes to the ngist_supplementary_public to fix for windows
-ngistPipeline --config configFiles/MasterConfig.yaml --default-dir configFiles/defaultDir
+## Changes to the ngist to fix for windows
+ngistPipeline --config configFiles/MasterConfig_NGC0000_XSL.yaml --default-dir configFiles/defaultDir
+
 
 # Code to run before ngist (solves thread oversubscribtion by keeping it at one thread per process, effectively speeding up the computing time):
 $env:OMP_NUM_THREADS = "1"
@@ -64,3 +65,7 @@ In ngistPipeline > prepareTemplates > miles.py @ line 24
 
     New:        files.append(os.path.basename(passedFiles[i]))
 
+In ngistPipeline > writeFITS > save_maps_fits.py --> replace all occurances
+    Original:   outdir.rstrip("/").split("/")[-1]
+
+    New:        os.path.basename(os.path.normpath(outdir))

@@ -28,7 +28,7 @@ Week 7 Goals
 - Run new galaxy on nGIST? mess with Mapviewer (type in terminal, select folder) (N)
 
 Week 8 Goals (send Jesse nGIST changes)
-- xShooter
+- fixing xShooter flux units (Y)
 - Geckos ESO120 through nGIST
     - Min S/N = 5 (minimum signal to noise thst will be binned)
     - Target S/N = choose large enough S/N so that we only have one bin of the entire galaxy (to look at overall sfh)
