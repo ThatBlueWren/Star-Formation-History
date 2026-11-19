@@ -1,0 +1,67 @@
+GENERAL:
+  RUN_ID: ESO120-016_iDR1_SN50_2.5_LW_4750-8900_singlebin_alphaMC
+  INPUT: 13_ESO120-016/ESO120-016_DATACUBE_iDR1.fits
+  OUTPUT: 13_ESO120-016
+  REDSHIFT: 0.012255
+  PARALLEL: true
+  NCPU: 7
+  LSF_DATA: lsf_MUSE-WFM-MILES
+  OW_CONFIG: true
+  OW_OUTPUT: false
+READ_DATA:
+  METHOD: MUSE_WFM
+  DEBUG: false
+  ORIGIN: 220,290
+  LMIN_TOT: 4750
+  LMAX_TOT: 8900
+  LMIN_SNR: 4750
+  LMAX_SNR: 7000
+  EBmV: 0.048
+SPATIAL_MASKING:
+  METHOD: default
+  MIN_SNR: 5
+  MASK: ESO120-016_brightstar_mask.fits
+  THRESHOLD_METHOD: isophote
+  SMOOTH_SIGMA: 5
+SPATIAL_BINNING:
+  METHOD: voronoi
+  TARGET_SNR: 2500
+  COVARIANCE: 0.0
+PREPARE_SPECTRA:
+  METHOD: default
+  VELSCALE: 41
+KIN:
+  METHOD: false
+  SIGMA: 130
+CONT:
+  METHOD: false
+GAS:
+  METHOD: false
+  LEVEL: BIN
+SFH:
+  METHOD: ppxf
+  LMIN: 4750
+  LMAX: 7000
+  SPEC_DUSTMASK: specMask_DUST
+  SPEC_MASK: specMask_KIN
+  SPEC_EMICLEAN: false
+  MOM: 4
+  MDEG: 23
+  REGUL: 0
+  FIXED: false
+  MC_PPXF: 0
+  LSF_TEMP: lsf_alphaMC_highres.txt
+  TEMPLATE_SET: alphaMC
+  LIBRARY: alphaMC/
+  NORM_TEMP: LIGHT
+  DOCLEAN: true
+  OPT_TEMP: default
+  DUST_CORR: false
+  NOISE: variance
+  PLOT: true
+  DEBUG_BIN:
+  - 1
+LS:
+  METHOD: false
+UMOD:
+  METHOD: false

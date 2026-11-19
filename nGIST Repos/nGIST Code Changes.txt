@@ -1,11 +1,28 @@
 ## Changes to the ngist to fix for windows
-ngistPipeline --config configFiles/MasterConfig_NGC0000_XSL.yaml --default-dir configFiles/defaultDir
+ngistPipeline --config configFiles/config_ESO120-016_XSL.yaml --default-dir configFiles/defaultDir
 
 
 # Code to run before ngist (solves thread oversubscribtion by keeping it at one thread per process, effectively speeding up the computing time):
 $env:OMP_NUM_THREADS = "1"
 $env:MKL_NUM_THREADS = "1"
 $env:OPENBLAS_NUM_THREADS = "1"
+
+
+# To make three copies of the results folders for each SSP model for a particular galaxy and subbing in Jesse's pre-prepared data
+$oldID = "ESO120-016_iDR1_SN50_2.5_LW_4750-8900_singlebin"
+$src   = ".\results\13_ESO120-016\$oldID"
+
+foreach ($m in "MILES","XSL","alphaMC") {
+    $newID = "${oldID}_$m"
+    $dst   = ".\results\13_ESO120-016\$newID"
+    New-Item -ItemType Directory -Force $dst | Out-Null
+    Get-ChildItem $src -File |
+      Where-Object { $_.Name -match "_(mask|table)\.fits$|_bin_spectra(_linear)?\.hdf5$" } |
+      ForEach-Object {
+        $newName = $_.Name -replace "^$([regex]::Escape($oldID))", $newID
+        Copy-Item $_.FullName (Join-Path $dst $newName)
+      }
+}
 
 # Changes made:
 In ngistPipeline > stellarKinematics > ppxf_kin_wrapper.py @ line 1004
